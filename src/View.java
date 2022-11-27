@@ -10,10 +10,12 @@ public class View {
         this.userController = userController;
     }
     public void runApp(){
-        System.out.println("Bem vindos à Locadora do Davi!");
-        Scanner scanner = new Scanner(System.in);
         int answer = -1;
         boolean loginResult = false;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Bem vindos à Locadora do Davi!");
+
         do {
             System.out.println("O que deseja fazer?");
             System.out.println("(1) Login");
@@ -47,10 +49,11 @@ public class View {
         String postalCode;
         String country;
         String password;
+
         do {
-            clearScreen();
-            System.out.println("Digite seus dados:");
-            scanner.nextLine();
+            this.clearScreen();
+
+            System.out.println("Comece digitandos os seus dados abaixo!\n");
             System.out.println("Nome:");
             name = scanner.nextLine();
             System.out.println("Email:");
@@ -72,12 +75,12 @@ public class View {
 
             Address address = new Address(street, city, state, postalCode, country);
             User user = new User(name, email, phone, password, address);
+
             result = userController.createUser(user);
 
-            if(result) System.out.println("Cadastro realizado!");
+            this.printRegisterResultMessage(result);
 
-        }
-        while (!result);
+        } while (!result);
     }
 
     private boolean doLogin(Scanner scanner){
@@ -85,31 +88,30 @@ public class View {
         String email;
         String password;
 
-        clearScreen();
+        this.clearScreen();
+
         System.out.println("Digite seu email:");
-        scanner.nextLine();
         email = scanner.nextLine();
         System.out.println("Digite sua senha:");
         password = scanner.nextLine();
 
         result = userController.login(email, password);
 
-        if(result) System.out.println("Login realizado!");
-        else System.out.println("Erro, tente novamente mais tarde!");
+        this.printLoginResultMessage(result);
 
         return result;
     }
 
     private void showLoggedOptions(Scanner scanner) {
         int answer = -1;
+
         do {
             System.out.println("(1) Listar todos filmes");
             System.out.println("(2) Listar filmes favoritos");
             System.out.println("(3) Listar filmes alugados");
             System.out.println("(4) Voltar");
             answer = readOption(scanner);
-        }
-        while(answer != 4);
+        } while(answer != 4);
     }
 
     private void clearScreen() {
@@ -118,7 +120,21 @@ public class View {
         }
     }
 
-    private int readOption(Scanner scanner){
+    private void printLoginResultMessage(boolean result) {
+        if (result)
+            System.out.println("Login realizado!");
+        else
+            System.out.println("Erro, tente novamente mais tarde!");
+    }
+
+    private void printRegisterResultMessage(boolean result) {
+        if(result)
+            System.out.println("Cadastro realizado!");
+        else
+            System.out.println("Erro, tente novamente mais tarde!");
+    }
+
+    private int readOption(Scanner scanner) {
         int answer = scanner.nextInt();
         scanner.nextLine();
         return answer;
