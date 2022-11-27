@@ -1,9 +1,10 @@
 package Models;
 
-public class Admin {
+public class Admin extends User {
     private String role;
 
-    public Admin(String role) {
+    public Admin(String name, String email, String phone, String password, Address address, String role) {
+        super(name, email, phone, password, address);
         this.role = role;
     }
 

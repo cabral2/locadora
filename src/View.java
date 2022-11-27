@@ -11,7 +11,6 @@ public class View {
     }
     public void runApp(){
         int answer = -1;
-        boolean loginResult = false;
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bem vindos à Locadora do Davi!");
@@ -24,16 +23,22 @@ public class View {
             answer = readOption(scanner);
 
             switch (answer){
-                case 1: loginResult = doLogin(scanner);
-                    if(loginResult)
-                        showLoggedOptions(scanner);
+                case 1:
+                    this.verifyLogin(scanner);
                     break;
-                case 2: doRegister(scanner); break;
-                case 3: break;
+
+                case 2:
+                    this.doRegister(scanner);
+                    break;
+
+                case 3:
+                    break;
+
                 default:
                     System.out.println("Não há essa opção, digite outro valor.");
                     break;
             }
+
         } while (answer != 3);
     }
 
@@ -102,6 +107,15 @@ public class View {
         return result;
     }
 
+    private void verifyLogin(Scanner scanner) {
+        boolean loginResult = this.doLogin(scanner);
+
+        if (loginResult)
+            this.showLoggedOptions(scanner);
+        else
+            System.out.println("Erro ao logar, tente novamente!");
+    }
+
     private void showLoggedOptions(Scanner scanner) {
         int answer = -1;
 
@@ -137,6 +151,7 @@ public class View {
     private int readOption(Scanner scanner) {
         int answer = scanner.nextInt();
         scanner.nextLine();
+
         return answer;
     }
 }
