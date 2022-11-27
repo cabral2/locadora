@@ -1,3 +1,4 @@
+import Controllers.MovieController;
 import Controllers.UserController;
 import Models.Address;
 import Models.User;
@@ -6,8 +7,10 @@ import java.util.Scanner;
 
 public class View {
     private UserController userController;
-    public View(UserController userController) {
+    private MovieController movieController;
+    public View(UserController userController, MovieController movieController) {
         this.userController = userController;
+        this.movieController = movieController;
     }
     public void runApp(){
         int answer = -1;

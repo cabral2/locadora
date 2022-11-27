@@ -15,7 +15,7 @@ public class UserController {
         this.usersStorage = usersStorage;
     }
 
-    public boolean login(String email, String password){
+    public boolean login(String email, String password) {
         User user = usersStorage.query(email);
         if(user == null)
             return false;
