@@ -17,9 +17,10 @@ public class View {
 
         do {
             System.out.println("O que deseja fazer?");
-            System.out.println("(1) Login");
+            System.out.println("(1) Login Usuario");
             System.out.println("(2) Cadastro");
-            System.out.println("(3) Sair");
+            System.out.println("(3) Login Admin");
+            System.out.println("(9) Sair");
             answer = readOption(scanner);
 
             switch (answer){
@@ -32,6 +33,7 @@ public class View {
                     break;
 
                 case 3:
+                    this.verifyAdminLogin(scanner);
                     break;
 
                 default:
@@ -39,7 +41,7 @@ public class View {
                     break;
             }
 
-        } while (answer != 3);
+        } while (answer != 9);
     }
 
     private void doRegister(Scanner scanner){
@@ -108,6 +110,15 @@ public class View {
     }
 
     private void verifyLogin(Scanner scanner) {
+        boolean loginResult = this.doLogin(scanner);
+
+        if (loginResult)
+            this.showLoggedOptions(scanner);
+        else
+            System.out.println("Erro ao logar, tente novamente!");
+    }
+
+    private void verifyAdminLogin(Scanner scanner) {
         boolean loginResult = this.doLogin(scanner);
 
         if (loginResult)
