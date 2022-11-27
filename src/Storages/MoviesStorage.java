@@ -8,6 +8,10 @@ import java.util.Date;
 public class MoviesStorage {
     private ArrayList<Movie> movies;
 
+    public MoviesStorage() {
+        this.movies = new ArrayList<Movie>();
+    }
+
     public Movie insert(){
         return new Movie("","",new Date(), "","");
     }

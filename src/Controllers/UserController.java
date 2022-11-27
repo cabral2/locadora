@@ -15,8 +15,11 @@ public class UserController {
         this.usersStorage = usersStorage;
     }
 
-    public boolean login(){
-        return false;
+    public boolean login(String email, String password){
+        User user = usersStorage.query(email);
+        if(user == null)
+            return false;
+        return user.getPassword().equals(password);
     }
     public boolean logout(){
         return false;
@@ -26,8 +29,9 @@ public class UserController {
         return new User("","","","", new Address("","","","",""));
     }
 
-    public User createUser(){
-        return new User("","","","", new Address("","","","",""));
+    public boolean createUser(User user){
+        boolean result = usersStorage.insert(user);
+        return result;
     }
 
     public Movie favoriteMovie(){

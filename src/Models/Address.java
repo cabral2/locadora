@@ -15,9 +15,9 @@ public class Address {
         this.country = country;
     }
 
-    public boolean validateAddress(){
-        return this.postalCode.length() == 8;
-    }
+//    public boolean validateAddress(){
+//        return this.postalCode.length() == 8;
+//    }
 
     public String getStreet() {
         return street;
