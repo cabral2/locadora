@@ -25,7 +25,7 @@ public class View {
         MovieController movieController = new MovieController(moviesStorage);
 
         userView = new UserView(userController);
-        movieView = new MovieView();
+        movieView = new MovieView(movieController);
     }
     public void runApp(){
         int answer = -1;
@@ -52,6 +52,9 @@ public class View {
 
                 case 3:
                     this.verifyAdminLogin(scanner);
+                    break;
+
+                case 9:
                     break;
 
                 default:

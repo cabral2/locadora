@@ -1,10 +1,19 @@
 package Views;
 
+import Controllers.MovieController;
+import Models.Movie;
 import Utils.ViewUtils;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MovieView {
+
+    private MovieController movieController;
+
+    public MovieView(MovieController movieController) {
+        this.movieController = movieController;
+    }
 
     public void showLoggedOptions(Scanner scanner) {
         int answer = -1;
@@ -37,6 +46,18 @@ public class MovieView {
     }
 
     public void showAllMovies(Scanner scanner){
+        ArrayList<Movie> movies = movieController.getAllMovies();
+        int n = 1;
+        int answer = -1;
+        do {
+            for (Movie movie : movies) {
+                System.out.println("(" + n + ")" + " - " + movie.getName());
+                n++;
+            }
+            System.out.println("(" + n + ")" + " Voltar");
+            answer = ViewUtils.readOption(scanner);
+
+        } while(answer != n);
 
     }
     public void showFavoriteMovies(Scanner scanner){

@@ -12,8 +12,7 @@ public class MovieController {
         this.moviesStorage = moviesStorage;
     }
     public ArrayList<Movie> getAllMovies(){
-        // moviesStorage.getMovies();
-        return new ArrayList<Movie>();
+        return moviesStorage.getMovies();
     }
 
 }

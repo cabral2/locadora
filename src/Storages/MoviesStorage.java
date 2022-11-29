@@ -18,6 +18,10 @@ public class MoviesStorage {
         this.initDefaultMovies();
     }
 
+    public ArrayList<Movie> getMovies() {
+        return movies;
+    }
+
     public boolean insert(Movie movie){
         movie.setId(movieIdsControl);
         movieIdsControl++;
