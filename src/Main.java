@@ -13,7 +13,7 @@ public class Main {
         UserController userController = new UserController(usersStorage);
         MovieController movieController = new MovieController(moviesStorage);
 
-        View app = new View(userController, movieController);
+        View app = new View();
 
         app.runApp();
     }
