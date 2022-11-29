@@ -59,7 +59,7 @@ public class UserView {
         } while (!result);
     }
 
-    public boolean doLogin(Scanner scanner){
+    public User doLogin(Scanner scanner){
         boolean result;
         String email;
         String password;
@@ -75,6 +75,6 @@ public class UserView {
 
         ViewUtils.printResultMessage(result);
 
-        return result;
+        return userController.findUser(email);
     }
 }

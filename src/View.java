@@ -3,7 +3,6 @@ import Controllers.UserController;
 import Storages.MoviesStorage;
 import Storages.UsersStorage;
 import Utils.ViewUtils;
-import Views.AdminView;
 import Views.UserView;
 import Views.MovieView;
 import Models.Address;
@@ -14,18 +13,20 @@ import java.util.Scanner;
 public class View {
     private UserController userController;
     private MovieController movieController;
+
     private UserView userView;
     private MovieView movieView;
-    private AdminView adminView;
 
-    public View(UserController userController, MovieController movieController, UserView userView, MovieView movieView, AdminView adminView) {
-        this.userController = userController;
-        this.movieController = movieController;
-        this.userView = userView;
-        this.movieView = movieView;
-        this.adminView = adminView;
+    public View() {
+        UsersStorage usersStorage = new UsersStorage();
+        MoviesStorage moviesStorage = new MoviesStorage();
+
+        UserController userController = new UserController(usersStorage);
+        MovieController movieController = new MovieController(moviesStorage);
+
+        userView = new UserView(userController);
+        movieView = new MovieView(movieController, userController);
     }
-
     public void runApp(){
         int answer = -1;
 
@@ -65,21 +66,27 @@ public class View {
     }
 
     public void verifyLogin(Scanner scanner) {
-        boolean loginResult = userView.doLogin(scanner);
+        User loggedUser = userView.doLogin(scanner);
 
-        if (loginResult)
+        if (loggedUser != null) {
+            setLoggedUser(loggedUser);
             movieView.showLoggedOptions(scanner);
-        else
+        } else
             System.out.println("Erro ao logar, tente novamente!");
     }
 
     public void verifyAdminLogin(Scanner scanner) {
-        boolean loginResult = userView.doLogin(scanner);
+        User loggedUser = userView.doLogin(scanner);
 
-        if (loginResult)
-            adminView.showLoggedOptions(scanner);
-        else
+        if (loggedUser != null) {
+            setLoggedUser(loggedUser);
+            movieView.showLoggedOptions(scanner);
+        } else
             System.out.println("Erro ao logar, tente novamente!");
+    }
+
+    private void setLoggedUser(User loggedUser) {
+        ViewUtils.loggedUser = loggedUser;
     }
 
 }

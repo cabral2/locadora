@@ -34,6 +34,10 @@ public class UserController {
         return result;
     }
 
+    public User findUser(String email) {
+        return usersStorage.query(email);
+    }
+
     public Movie favoriteMovie(){
         return new Movie("","","2020", "","");
     }
