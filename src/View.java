@@ -3,6 +3,7 @@ import Controllers.UserController;
 import Storages.MoviesStorage;
 import Storages.UsersStorage;
 import Utils.ViewUtils;
+import Views.AdminView;
 import Views.UserView;
 import Views.MovieView;
 import Models.Address;
@@ -11,22 +12,16 @@ import Models.User;
 import java.util.Scanner;
 
 public class View {
-    private UserController userController;
-    private MovieController movieController;
-
     private UserView userView;
     private MovieView movieView;
+    private AdminView adminView;
 
-    public View() {
-        UsersStorage usersStorage = new UsersStorage();
-        MoviesStorage moviesStorage = new MoviesStorage();
-
-        UserController userController = new UserController(usersStorage);
-        MovieController movieController = new MovieController(moviesStorage);
-
-        userView = new UserView(userController);
-        movieView = new MovieView(movieController, userController);
+    public View(UserView userView, MovieView movieView, AdminView adminView) {
+        this.userView = userView;
+        this.movieView = movieView;
+        this.adminView = adminView;
     }
+
     public void runApp(){
         int answer = -1;
 
@@ -80,7 +75,7 @@ public class View {
 
         if (loggedUser != null) {
             setLoggedUser(loggedUser);
-            movieView.showLoggedOptions(scanner);
+            adminView.showLoggedOptions(scanner);
         } else
             System.out.println("Erro ao logar, tente novamente!");
     }

@@ -20,10 +20,9 @@ public class Main {
 
         UserView userView = new UserView(userController);
         AdminView adminView = new AdminView(adminController);
-        MovieView movieView = new MovieView(movieController);
+        MovieView movieView = new MovieView(movieController, userController);
 
-        // maybe controllers aren't needed on this constructor
-        View app = new View(userController, movieController, userView, movieView, adminView);
+        View app = new View(userView, movieView, adminView);
 
         app.runApp();
     }
