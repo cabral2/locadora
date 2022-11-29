@@ -25,7 +25,7 @@ public class View {
         MovieController movieController = new MovieController(moviesStorage);
 
         userView = new UserView(userController);
-        movieView = new MovieView(movieController);
+        movieView = new MovieView(movieController, userController);
     }
     public void runApp(){
         int answer = -1;
@@ -66,21 +66,27 @@ public class View {
     }
 
     public void verifyLogin(Scanner scanner) {
-        boolean loginResult = userView.doLogin(scanner);
+        User loggedUser = userView.doLogin(scanner);
 
-        if (loginResult)
+        if (loggedUser != null) {
+            setLoggedUser(loggedUser);
             movieView.showLoggedOptions(scanner);
-        else
+        } else
             System.out.println("Erro ao logar, tente novamente!");
     }
 
     public void verifyAdminLogin(Scanner scanner) {
-        boolean loginResult = userView.doLogin(scanner);
+        User loggedUser = userView.doLogin(scanner);
 
-        if (loginResult)
+        if (loggedUser != null) {
+            setLoggedUser(loggedUser);
             movieView.showLoggedOptions(scanner);
-        else
+        } else
             System.out.println("Erro ao logar, tente novamente!");
+    }
+
+    private void setLoggedUser(User loggedUser) {
+        ViewUtils.loggedUser = loggedUser;
     }
 
 }

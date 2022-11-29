@@ -1,8 +1,11 @@
 package Utils;
 
+import Models.User;
+
 import java.util.Scanner;
 
 public class ViewUtils {
+    public static User loggedUser;
 
     public static void clearScreen() {
         for(int i =0; i< 50; i++){
