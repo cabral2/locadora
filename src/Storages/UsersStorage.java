@@ -29,6 +29,10 @@ public class UsersStorage {
         return users.get(email);
     }
 
+    public ArrayList<User> getUsers() {
+        return (ArrayList<User>) users.values();
+    }
+
     private void initDefaultUsers(){
         Address address = new Address("1", "1", "1", "1", "1");
         User admin = new Admin("admin", "admin@admin", "1", "admin", address, "admin" );

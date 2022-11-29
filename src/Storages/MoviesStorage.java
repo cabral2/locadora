@@ -7,25 +7,26 @@ import Models.User;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MoviesStorage {
-    private ArrayList<Movie> movies;
+    private HashMap<Integer,Movie> movies;
     private int movieIdsControl;
 
     public MoviesStorage() {
         movieIdsControl = 1;
-        this.movies = new ArrayList<Movie>();
+        this.movies = new HashMap<Integer, Movie>();
         this.initDefaultMovies();
     }
 
     public ArrayList<Movie> getMovies() {
-        return movies;
+        return (ArrayList<Movie>) movies.values();
     }
 
     public boolean insert(Movie movie){
         movie.setId(movieIdsControl);
+        movies.put(movieIdsControl,movie);
         movieIdsControl++;
-        movies.add(movie);
         return true;
     }
     public boolean delete(){

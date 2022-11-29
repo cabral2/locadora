@@ -57,4 +57,7 @@ public class UserController {
     public ArrayList<Movie> listRentMovies(){
         return new ArrayList<Movie>();
     }
+    public ArrayList<User> getAllUsers() {
+        return new ArrayList<User>();
+    }
 }

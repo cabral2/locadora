@@ -3,6 +3,7 @@ package Views;
 import Controllers.MovieController;
 import Controllers.UserController;
 import Models.Movie;
+import Models.User;
 import Utils.ViewUtils;
 
 import java.util.ArrayList;
@@ -60,14 +61,25 @@ public class AdminView {
 
     private void listMovies(){
         ArrayList<Movie> movies = movieController.getAllMovies();
-
         for(Movie movie : movies){
-
+            System.out.println("("+movie.getId()+") "+movie.getName());
         }
     }
     private void createMovie(Scanner scanner){}
-    private void editMovie(Scanner scanner){}
-    private void removeMovie(Scanner scanner){}
-    private void listUsers(){}
+    private void editMovie(Scanner scanner){
+        System.out.println("Selecione qual filme deseja editar: ");
+        this.listMovies();
+
+    }
+    private void removeMovie(Scanner scanner){
+        System.out.println("Selecione qual filme deseja excluir:");
+        this.listMovies();
+    }
+    private void listUsers(){
+//        ArrayList<User> users = userController.;
+//        for(Movie movie : movies){
+//            System.out.println("("+movie.getId()+") "+movie.getName());
+//        }
+    }
     private void removeUser(Scanner scanner){}
 }
