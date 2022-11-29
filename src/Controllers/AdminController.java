@@ -20,11 +20,11 @@ public class AdminController {
     }
 
     public Movie createMovie(){
-        return new Movie("","",new Date(), "","");
+        return new Movie(0,"","",new Date(), "","");
     }
 
     public Movie editMovie(){
-        return new Movie("","",new Date(), "","");
+        return new Movie(0,"","",new Date(), "","");
     }
 
     public boolean deleteMovie(){

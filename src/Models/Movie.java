@@ -3,18 +3,28 @@ package Models;
 import java.util.Date;
 
 public class Movie {
+    private int id;
     private String name;
     private String director;
     private Date releaseYear;
     private String description;
     private String category;
 
-    public Movie(String name, String director, Date releaseYear, String description, String category) {
+    public Movie(int id, String name, String director, Date releaseYear, String description, String category) {
+        this.id = id;
         this.name = name;
         this.director = director;
         this.releaseYear = releaseYear;
         this.description = description;
         this.category = category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
