@@ -47,17 +47,24 @@ public class MovieView {
 
     public void showAllMovies(Scanner scanner){
         ArrayList<Movie> movies = movieController.getAllMovies();
-        int n = 1;
         int answer = -1;
+        int currentId = 0;
         do {
             for (Movie movie : movies) {
-                System.out.println("(" + n + ")" + " - " + movie.getName());
-                n++;
+                currentId = movie.getId();
+                System.out.println("(" + currentId + ")" + " - " + movie.getName());
             }
-            System.out.println("(" + n + ")" + " Voltar");
+            System.out.println("(" + (currentId + 1) + ")" + " Voltar");
             answer = ViewUtils.readOption(scanner);
 
-        } while(answer != n);
+            Movie selectedMovie = movieController.findMovie(answer);
+
+            System.out.println(selectedMovie);
+        } while(answer != (currentId + 1));
+
+    }
+
+    private void printMovieInformation(Movie movie){
 
     }
     public void showFavoriteMovies(Scanner scanner){

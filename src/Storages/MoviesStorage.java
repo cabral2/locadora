@@ -35,9 +35,7 @@ public class MoviesStorage {
     public Movie update(){
         return new Movie("","", new Date(), "","");
     }
-    public Movie query(){
-        return new Movie("","", new Date(), "","");
-    }
+    public Movie query(int id){ return movies.get(id); }
 
     private void initDefaultMovies() {
         Movie movieUm = new Movie("Oi", "Gaspar Noe", new Date(2018), "Tchau", "Comedia");
