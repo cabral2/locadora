@@ -35,11 +35,11 @@ public class UserController {
     }
 
     public Movie favoriteMovie(){
-        return new Movie("","",new Date(), "","");
+        return new Movie("","","2020", "","");
     }
 
     public Movie unfavoriteMovie(){
-        return new Movie("","",new Date(), "","");
+        return new Movie("","","2020", "","");
     }
 
     public ArrayList<Movie> listFavoriteMovies(){
@@ -47,17 +47,21 @@ public class UserController {
     }
 
     public Movie rentMovie(){
-        return new Movie("","",new Date(), "","");
+        return new Movie("","","2020", "","");
     }
 
     public Movie unrentMovie(){
-        return new Movie("","",new Date(), "","");
+        return new Movie("","","2020", "","");
     }
 
     public ArrayList<Movie> listRentMovies(){
         return new ArrayList<Movie>();
     }
     public ArrayList<User> getAllUsers() {
-        return new ArrayList<User>();
+        return usersStorage.getUsers();
     }
+    public UsersStorage getUsersStorage() {
+        return usersStorage;
+    }
+
 }

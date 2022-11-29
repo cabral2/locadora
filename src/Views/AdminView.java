@@ -1,7 +1,6 @@
 package Views;
 
-import Controllers.MovieController;
-import Controllers.UserController;
+import Controllers.AdminController;
 import Models.Movie;
 import Models.User;
 import Utils.ViewUtils;
@@ -9,13 +8,13 @@ import Utils.ViewUtils;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AdminView {
-    private MovieController movieController;
-    private UserController userController;
+import static Utils.ViewUtils.readOption;
 
-    public AdminView(MovieController movieController, UserController userController) {
-        this.movieController = movieController;
-        this.userController = userController;
+public class AdminView {
+    private AdminController adminController;
+
+    public AdminView(AdminController adminController) {
+        this.adminController = adminController;
     }
 
     public void showLoggedOptions(Scanner scanner) {
@@ -29,11 +28,11 @@ public class AdminView {
             System.out.println("(5) Listar usuários");
             System.out.println("(6) Remover usuário");
             System.out.println("(7) Voltar");
-            answer = ViewUtils.readOption(scanner);
+            answer = readOption(scanner);
 
             switch (answer){
                 case 1:
-                    this.listMovies();
+                    this.listMovies(scanner);
                     break;
                 case 2:
                     this.createMovie(scanner);
@@ -45,7 +44,7 @@ public class AdminView {
                     this.removeMovie(scanner);
                     break;
                 case 5:
-                    this.listUsers();
+                    this.listUsers(scanner);
                     break;
                 case 6:
                     this.removeUser(scanner);
@@ -59,27 +58,112 @@ public class AdminView {
         } while(answer != 7);
     }
 
-    private void listMovies(){
-        ArrayList<Movie> movies = movieController.getAllMovies();
-        for(Movie movie : movies){
-            System.out.println("("+movie.getId()+") "+movie.getName());
-        }
+    private void listMovies(Scanner scanner){
+        this.displayMovies();
+        System.out.println("(1) Voltar");
+        int answer = ViewUtils.readOption(scanner);
     }
-    private void createMovie(Scanner scanner){}
+    private void createMovie(Scanner scanner){
+        boolean result;
+
+        String name;
+        String director;
+        String releaseYear;
+        String description;
+        String category;
+
+        do {
+            ViewUtils.clearScreen();
+
+            System.out.println("Digite os dados abaixo!");
+            System.out.println("Nome:");
+            name = scanner.nextLine();
+            System.out.println("Diretor:");
+            director = scanner.nextLine();
+            System.out.println("Ano:");
+            releaseYear = scanner.nextLine();
+            System.out.println("Descrição:");
+            description = scanner.nextLine();
+            System.out.println("Categoria:");
+            category = scanner.nextLine();
+
+            Movie movie = new Movie(name, director, releaseYear, description, category);
+
+            result = adminController.createMovie(movie);
+
+            ViewUtils.printResultMessage(result);
+
+        } while (!result);
+    }
     private void editMovie(Scanner scanner){
         System.out.println("Selecione qual filme deseja editar: ");
-        this.listMovies();
+        this.displayMovies();
+        int id = ViewUtils.readOption(scanner);
+
+        System.out.println("Digite as novas informações(Caso não queira editar uma propriedade basta deixar em branco): ");
+        String name;
+        String director;
+        String releaseYear;
+        String description;
+        String category;
+
+
+        ViewUtils.clearScreen();
+
+        System.out.println("Digite os dados abaixo!");
+        System.out.println("Nome:");
+        name = scanner.nextLine();
+        System.out.println("Diretor:");
+        director = scanner.nextLine();
+        System.out.println("Ano:");
+        releaseYear = scanner.nextLine();
+        System.out.println("Descrição:");
+        description = scanner.nextLine();
+        System.out.println("Categoria:");
+        category = scanner.nextLine();
+
+        Movie movie = new Movie(name, director, releaseYear, description, category);
+
+        adminController.editMovie(id, movie);
+        ViewUtils.printResultMessage(true);
 
     }
     private void removeMovie(Scanner scanner){
         System.out.println("Selecione qual filme deseja excluir:");
-        this.listMovies();
+        this.displayMovies();
+        int id = ViewUtils.readOption(scanner);
+
+        boolean result = adminController.deleteMovie(id);
+        ViewUtils.printResultMessage(result);
+
     }
-    private void listUsers(){
-//        ArrayList<User> users = userController.;
-//        for(Movie movie : movies){
-//            System.out.println("("+movie.getId()+") "+movie.getName());
-//        }
+    private void listUsers(Scanner scanner){
+        this.displayUsers();
+        System.out.println("(1) Voltar");
+        int answer = ViewUtils.readOption(scanner);
     }
-    private void removeUser(Scanner scanner){}
+    private void removeUser(Scanner scanner){
+        System.out.println("Digite o email do usuario a ser excluido:");
+        this.displayUsers();
+        String email = scanner.nextLine();
+
+        boolean result = adminController.deleteUser(email);
+        ViewUtils.printResultMessage(result);
+    }
+
+    private void displayUsers(){
+        ArrayList<User> users = adminController.getAllUsers();
+        for(User user : users){
+            System.out.println("("+user.getEmail()+") "+user.getName());
+        }
+        System.out.println();
+    }
+
+    private void displayMovies(){
+        ArrayList<Movie> movies = adminController.getAllMovies();
+        for(Movie movie : movies){
+            System.out.println("("+movie.getId()+") "+movie.getName());
+        }
+        System.out.println();
+    }
 }

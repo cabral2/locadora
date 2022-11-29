@@ -20,8 +20,8 @@ public class UsersStorage {
         users.put(user.getEmail(),user);
         return true;
     }
-    public boolean delete(){
-        return false;
+    public boolean delete(String email){
+        return users.remove(email) != null;
     }
     public User update(){
         return new User("","","","", new Address("","","","",""));

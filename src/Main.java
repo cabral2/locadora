@@ -1,7 +1,11 @@
+import Controllers.AdminController;
 import Controllers.MovieController;
 import Controllers.UserController;
 import Storages.MoviesStorage;
 import Storages.UsersStorage;
+import Views.AdminView;
+import Views.MovieView;
+import Views.UserView;
 
 import java.util.Scanner;
 
@@ -12,8 +16,14 @@ public class Main {
 
         UserController userController = new UserController(usersStorage);
         MovieController movieController = new MovieController(moviesStorage);
+        AdminController adminController = new AdminController(usersStorage, moviesStorage);
 
-        View app = new View();
+        UserView userView = new UserView(userController);
+        AdminView adminView = new AdminView(adminController);
+        MovieView movieView = new MovieView(movieController);
+
+        // maybe controllers aren't needed on this constructor
+        View app = new View(userController, movieController, userView, movieView, adminView);
 
         app.runApp();
     }

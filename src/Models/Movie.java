@@ -6,11 +6,11 @@ public class Movie {
     private int id;
     private String name;
     private String director;
-    private Date releaseYear;
+    private String releaseYear;
     private String description;
     private String category;
 
-    public Movie(String name, String director, Date releaseYear, String description, String category) {
+    public Movie(String name, String director, String releaseYear, String description, String category) {
         this.name = name;
         this.director = director;
         this.releaseYear = releaseYear;
@@ -42,11 +42,11 @@ public class Movie {
         this.director = director;
     }
 
-    public Date getReleaseYear() {
+    public String getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Date releaseYear) {
+    public void setReleaseYear(String releaseYear) {
         this.releaseYear = releaseYear;
     }
 
