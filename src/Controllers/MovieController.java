@@ -15,4 +15,7 @@ public class MovieController {
         return moviesStorage.getMovies();
     }
 
+    public Movie findMovie(int id){ return moviesStorage.query(id);}
+
+
 }
