@@ -59,13 +59,17 @@ public class MovieView {
 
             Movie selectedMovie = movieController.findMovie(answer);
 
-            System.out.println(selectedMovie);
+            printMovieInformation(selectedMovie);
         } while(answer != (currentId + 1));
 
     }
 
     private void printMovieInformation(Movie movie){
-
+        System.out.println(movie.getName());
+        System.out.println(movie.getDescription());
+        System.out.println(movie.getReleaseYear());
+        System.out.println(movie.getDirector());
+        System.out.println(movie.getCategory());
     }
     public void showFavoriteMovies(Scanner scanner){
 

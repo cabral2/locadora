@@ -2,6 +2,7 @@ package Storages;
 
 import Models.Address;
 import Models.Admin;
+import Models.Movie;
 import Models.User;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class UsersStorage {
     }
 
     public ArrayList<User> getUsers() {
-        return (ArrayList<User>) users.values();
+        return new ArrayList<User>(users.values());
     }
 
     private void initDefaultUsers(){

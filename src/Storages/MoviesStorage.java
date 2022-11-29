@@ -20,7 +20,7 @@ public class MoviesStorage {
     }
 
     public ArrayList<Movie> getMovies() {
-        return (ArrayList<Movie>) movies.values();
+        return new ArrayList<Movie>(movies.values());
     }
 
     public boolean insert(Movie movie){
