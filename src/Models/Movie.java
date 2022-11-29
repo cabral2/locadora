@@ -10,8 +10,7 @@ public class Movie {
     private String description;
     private String category;
 
-    public Movie(int id, String name, String director, Date releaseYear, String description, String category) {
-        this.id = id;
+    public Movie(String name, String director, Date releaseYear, String description, String category) {
         this.name = name;
         this.director = director;
         this.releaseYear = releaseYear;
