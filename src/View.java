@@ -25,6 +25,7 @@ public class View {
         MovieController movieController = new MovieController(moviesStorage);
 
         userView = new UserView(userController);
+        movieView = new MovieView();
     }
     public void runApp(){
         int answer = -1;
