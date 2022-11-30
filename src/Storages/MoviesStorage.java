@@ -1,12 +1,8 @@
 package Storages;
 
-import Models.Address;
-import Models.Admin;
 import Models.Movie;
-import Models.User;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class MoviesStorage {

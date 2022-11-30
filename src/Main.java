@@ -7,8 +7,6 @@ import Views.AdminView;
 import Views.MovieView;
 import Views.UserView;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         UsersStorage usersStorage = new UsersStorage();
@@ -20,11 +18,16 @@ public class Main {
 
         UserView userView = new UserView(userController);
         AdminView adminView = new AdminView(adminController);
-        MovieView movieView = new MovieView(movieController, userController);
+        MovieView movieView = new MovieView(movieController);
 
-        View app = new View(userView, movieView, adminView);
+        ViewManager app = new ViewManager(userView, movieView, adminView);
+        try {
+            app.runApp();
+        } catch (Exception e){
+            System.out.println("Ocorreu algum erro inesperado, volte ao inicio por favor!\n");
+            app.runApp();
+        }
 
-        app.runApp();
     }
 
 }

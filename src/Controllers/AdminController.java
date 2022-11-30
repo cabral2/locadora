@@ -2,12 +2,10 @@ package Controllers;
 
 
 import Models.Movie;
-import Models.User;
 import Storages.MoviesStorage;
 import Storages.UsersStorage;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AdminController extends UserController{ ;
     private MoviesStorage moviesStorage;

@@ -2,8 +2,9 @@ package Storages;
 
 import Models.Address;
 import Models.Admin;
-import Models.Movie;
+import Models.CommonUser;
 import Models.User;
+import Utils.UserType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,14 +18,12 @@ public class UsersStorage {
     }
 
     public boolean insert(User user){
-        users.put(user.getEmail(),user);
+        users.put(user.getEmail(), user);
         return true;
     }
     public boolean delete(String email){
-        return users.remove(email) != null;
-    }
-    public User update(){
-        return new User("","","","", new Address("","","","",""));
+        User user = users.remove(email);
+        return user != null;
     }
     public User query(String email){
         return users.get(email);
@@ -36,8 +35,10 @@ public class UsersStorage {
 
     private void initDefaultUsers(){
         Address address = new Address("1", "1", "1", "1", "1");
-        User admin = new Admin("admin", "admin@admin", "1", "admin", address, "admin" );
+        Admin admin = new Admin("admin", "admin@admin", "1", "admin", address, UserType.ADMIN);
+        CommonUser common = new CommonUser("user", "user@user", "1", "user", address, UserType.COMMON);
 
         this.insert(admin);
+        this.insert(common);
     }
 }

@@ -2,6 +2,7 @@ package Views;
 
 import Controllers.AdminController;
 import Models.Movie;
+import Models.CommonUser;
 import Models.User;
 import Utils.ViewUtils;
 
@@ -154,7 +155,7 @@ public class AdminView {
     private void displayUsers(){
         ArrayList<User> users = adminController.getAllUsers();
         for(User user : users){
-            System.out.println("("+user.getEmail()+") "+user.getName());
+            System.out.println("("+ user.getEmail()+") "+ user.getName());
         }
         System.out.println();
     }

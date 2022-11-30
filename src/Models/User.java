@@ -1,5 +1,7 @@
 package Models;
 
+import Utils.UserType;
+
 import java.util.ArrayList;
 
 public class User {
@@ -10,8 +12,9 @@ public class User {
     private ArrayList<Movie> favoriteMovies;
     private ArrayList<Movie> rentMovies;
     private Address address;
+    private UserType role;
 
-    public User(String name, String email, String phone, String password, Address address) {
+    public User(String name, String email, String phone, String password, Address address, UserType role) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -19,6 +22,7 @@ public class User {
         this.favoriteMovies = new ArrayList<Movie>();
         this.rentMovies = new ArrayList<Movie>();
         this.address = address;
+        this.role = role;
     }
 
     public String getName() {
@@ -76,8 +80,12 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    public UserType getRole() {
+        return role;
+    }
+
+    public void setRole(UserType role) {
+        this.role = role;
+    }
 }
-
-
-
-

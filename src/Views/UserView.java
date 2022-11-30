@@ -2,7 +2,9 @@ package Views;
 
 import Controllers.UserController;
 import Models.Address;
+import Models.CommonUser;
 import Models.User;
+import Utils.UserType;
 import Utils.ViewUtils;
 import java.util.Scanner;
 
@@ -50,9 +52,9 @@ public class UserView {
             password = scanner.nextLine();
 
             Address address = new Address(street, city, state, postalCode, country);
-            User user = new User(name, email, phone, password, address);
+            CommonUser commonUser = new CommonUser(name, email, phone, password, address, UserType.COMMON);
 
-            result = userController.createUser(user);
+            result = userController.createUser(commonUser);
 
             ViewUtils.printResultMessage(result);
 
@@ -75,6 +77,6 @@ public class UserView {
 
         ViewUtils.printResultMessage(result);
 
-        return userController.findUser(email);
+        return result ? userController.findUser(email) : null;
     }
 }

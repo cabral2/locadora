@@ -1,5 +1,6 @@
 package Utils;
 
+import Models.CommonUser;
 import Models.User;
 
 import java.util.Scanner;
